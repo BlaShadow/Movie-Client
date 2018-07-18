@@ -34,7 +34,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="zO9-wQ-xll">
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="pjM-CB-Sju">
+                        <barButtonItem key="rightBarButtonItem" title="Search" image="ico_search" id="pjM-CB-Sju">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="bxT-Pn-fsR" kind="show" id="UM0-Ef-wdJ"/>
                             </connections>
@@ -52,14 +53,36 @@
         <!--Search-->
         <scene sceneID="zV2-sE-55d">
             <objects>
-                <viewController id="bxT-Pn-fsR" sceneMemberID="viewController">
+                <viewController id="bxT-Pn-fsR" customClass="SearchViewController" customModule="Movie_Api_Client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UHk-44-dXL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8tY-kY-Ikr">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="luq-WH-TbD">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8tY-kY-Ikr" firstAttribute="top" secondItem="fj5-7h-c7i" secondAttribute="top" id="CPt-d3-rPm"/>
+                            <constraint firstItem="fj5-7h-c7i" firstAttribute="trailing" secondItem="8tY-kY-Ikr" secondAttribute="trailing" id="IMP-E1-feK"/>
+                            <constraint firstItem="8tY-kY-Ikr" firstAttribute="leading" secondItem="fj5-7h-c7i" secondAttribute="leading" id="bPW-em-Ygn"/>
+                            <constraint firstItem="fj5-7h-c7i" firstAttribute="bottom" secondItem="8tY-kY-Ikr" secondAttribute="bottom" id="z6C-dY-3vA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fj5-7h-c7i"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="Fll-ac-SpL"/>
+                    <connections>
+                        <outlet property="searchBar" destination="luq-WH-TbD" id="Eqw-Om-cvp"/>
+                        <outlet property="tableViewSearchResult" destination="8tY-kY-Ikr" id="Grx-NG-7pK"/>
+                        <segue destination="mnq-zG-aKh" kind="show" identifier="SEARCH_MOVIE_DETAILS" id="yGd-Sg-bYb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18M-JH-oKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,7 +120,7 @@
                                                         <constraint firstAttribute="height" constant="133" id="rwf-yK-1Or"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsa-4A-I7z">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsa-4A-I7z">
                                                     <rect key="frame" x="115" y="211" width="245" height="22.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="yWL-2S-4bt"/>
@@ -183,4 +206,10 @@
             <point key="canvasLocation" x="-188" y="772"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ico_search" width="25" height="25"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="yGd-Sg-bYb"/>
+    </inferredMetricsTieBreakers>
 </document>

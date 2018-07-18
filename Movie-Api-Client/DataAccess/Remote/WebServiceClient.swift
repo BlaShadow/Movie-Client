@@ -43,7 +43,7 @@ class WebServiceClient: NSObject, MovieApiClientProtocol {
     // MARK: Movie Client Protocol
     
     func retrieveListOfMoviesForPage(page :NSInteger, withCompletion completion: @escaping (WebServiceResponse) -> Void) -> URLSessionTask {
-        let url = self.url(withPath: "discover/movie")
+        let url = self.url(withPath: "discover/movie", params: ["page": String(page)])
         
         //Perform request
         return self.executeRequest(with: self.mutableGetRequest(withUrl: url), and: completion)
@@ -53,14 +53,25 @@ class WebServiceClient: NSObject, MovieApiClientProtocol {
     // MARK: -
     // MARK: Misc
     
-    func url(withPath path:String) -> String{
+    func url(withPath path:String, params:[String: String]) -> URLComponents {
         let apiKey = "1f54bd990f1cdfb230adb312546d765d"
+        var defaultParams: [String: String] = ["language": "en-US", "api_key": apiKey]
         
-        return String(format: "https://api.themoviedb.org/3/%@?api_key=%@&language=en-US", path, apiKey)
+        //Merge params
+        defaultParams.merge(params) { (_, new) in new }
+        
+        let queryItems = defaultParams.map { (key:String, value:String) -> URLQueryItem in
+            return URLQueryItem(name: key, value: value)
+        }
+        
+        var url = URLComponents(string: String(format: "https://api.themoviedb.org/3/%@", path))!
+        url.queryItems = queryItems
+        
+        return url
     }
     
-    func mutableGetRequest(withUrl url:String) -> URLRequest {
-        let request = NSMutableURLRequest(url: URL(string: url)!)
+    func mutableGetRequest(withUrl urlComponent: URLComponents) -> URLRequest {
+        let request = NSMutableURLRequest(url: urlComponent.url!)
         
         request.httpMethod = "GET"
         

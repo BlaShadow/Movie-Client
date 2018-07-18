@@ -14,11 +14,11 @@ extension Date {
     ///
     /// - Parameter value: string value
     /// - Returns: date
-    static func dateWithString(value:String) -> Date {
+    static func dateWithString(value: String) -> Date {
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "yyyy-MM-dd"
         
-        return dateFormat.date(from: value)!
+        return dateFormat.date(from: value) ?? Date()
     }
     
     /// Format date with format Jun 02, 2018

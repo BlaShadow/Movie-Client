@@ -8,15 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
 
     @IBOutlet fileprivate weak var moviesTableview: UITableView!
     
-    let kMovieCellIdentifier = "MOVIE_CELL"
     let kMovieDetailsSegue = "MOVIE_DETAILS_SEGUE"
     
     fileprivate var movieList: [Movie]?
     fileprivate var fetchTask: URLSessionTask?
+    fileprivate var movieDelegate: MovieTableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +27,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.barStyle = .blackOpaque;
         
-        self.moviesTableview.delegate = self
-        self.moviesTableview.dataSource = self
+        //Setup movie delegate
+        movieDelegate = MovieTableViewDelegate(with: self.moviesTableview, andResponder: self)
         
-        self.moviesTableview.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
-        self.moviesTableview.tableFooterView = UIView()
-        self.moviesTableview.rowHeight = UITableViewAutomaticDimension
-        self.moviesTableview.estimatedRowHeight = 250.0
-        self.moviesTableview.separatorStyle = .none
-        
-        //Register custom cell
-        self.moviesTableview .register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: kMovieCellIdentifier)
+        self.moviesTableview.delegate = movieDelegate
+        self.moviesTableview.dataSource = movieDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,11 +41,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if error != nil {
                 
             } else {
-                //Save returned items
-                self.movieList = items
-                
                 //Reload data
-                self.moviesTableview.reloadData()
+                self.movieDelegate?.updateTableView(with: items!)
             }
         }
     }
@@ -61,39 +52,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier?.elementsEqual(kMovieDetailsSegue))!{
+        let segueIdentifier = segue.identifier ?? ""
+        
+        if(segueIdentifier.elementsEqual(kMovieDetailsSegue)){
             let controller = segue.destination as! MovieDetailsViewController
             
             //Setup details view controller with a movie
             controller.setupViewController(with: sender as! Movie)
         }
     }
-    
-    // MARK: -
-    // MARK: Table view delegate & DataSource
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.movieList?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:MovieTableViewCell = tableView .dequeueReusableCell(withIdentifier: kMovieCellIdentifier, for: indexPath) as! MovieTableViewCell
-        let movie = self.movieList![indexPath.row]
-        
-        //Setup cell
-        cell.setupCell(with: movie)
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movie = self.movieList![indexPath.row]
-        
+}
+
+extension ViewController : MovieTableViewDelegateResponder {
+    func didSelectMovie(with movie: Movie) {
         self.performSegue(withIdentifier: kMovieDetailsSegue, sender: movie)
     }
 }
-

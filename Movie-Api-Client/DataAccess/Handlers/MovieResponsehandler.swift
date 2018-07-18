@@ -23,9 +23,23 @@ class MovieResponsehandler: NSObject {
             var error: NSError?
             
             if response.statusCode == 200 {
-                let content: Dictionary<String, AnyObject> = response.responseContent as! Dictionary
+                guard let content: Dictionary<String, AnyObject> = response.responseContent as? Dictionary<String, AnyObject> else {
+                    DispatchQueue.main.async {
+                        completion(error, result)
+                    }
+                    
+                    return
+                }
                 
-                result = self.parseListOfMovies(rawData: content["results"] as! [Dictionary<String, AnyObject>])
+                guard let rawResults: [Dictionary<String, AnyObject>] = content["results"] as? [Dictionary<String, AnyObject>] else {
+                    DispatchQueue.main.async {
+                        completion(error, result)
+                    }
+                    
+                    return
+                }
+                
+                result = self.parseListOfMovies(rawData: rawResults)
             } else {
                 error = NSError(domain: "movie", code: 0, userInfo: ["errorDescription": "Unkown error"])
             }
@@ -49,42 +63,17 @@ class MovieResponsehandler: NSObject {
     }
     
     fileprivate func parseSingleMovieWith(rawItem item: Dictionary<String, AnyObject>) -> Movie {
-        let identifier = item["id"]?.int64Value!
-        let title = item["title"] as! String
-        let overview = item["overview"] as! String
-        let releaseDate = Date.dateWithString(value: item["release_date"] as! String)
-        let backdropImagePath = item["backdrop_path"] as! String
-        let posterImagePath = item["poster_path"] as! String
-        let movieScore = NSNumber(value: (item["vote_average"]?.doubleValue)!)
         
-        let movie = Movie(identifier: identifier!, title: title, overview: overview, releaseDate: releaseDate, movieScore: movieScore , backdropImage: backdropImagePath, posterImage: posterImagePath)
+        let identifier = item["id"]?.int64Value ?? 0
+        let title = item["title"] as? String ?? ""
+        let overview = item["overview"] as? String ?? ""
+        let releaseDate = Date.dateWithString(value: item["release_date"]as? String ?? "")
+        let backdropImagePath = item["backdrop_path"] as? String ?? ""
+        let posterImagePath = item["poster_path"] as? String ?? ""
+        let movieScore = NSNumber(value: (item["vote_average"]?.doubleValue ?? 0))
+        
+        let movie = Movie(identifier: identifier, title: title, overview: overview, releaseDate: releaseDate, movieScore: movieScore , backdropImage: backdropImagePath, posterImage: posterImagePath)
         
         return movie
     }
-    
-    
-//    - (NSURLSessionTask *)retrieveListOfMoviesForPage:(NSInteger)page withCompletion:(void (^)(NSError *, NSArray *))completion{
-//    void (^handler)(WebServiceResponse *) = ^(WebServiceResponse *response) {
-//
-//    NSArray *movieList = nil;
-//    NSError *error = nil;
-//
-//    if(response.statusCode == 200){
-//    NSArray *rawResults = [response.responseContent objectForKey:@"results"];
-//
-//    //Parse a list of movies
-//    movieList = [self parseAListOfMoviesWithArray:rawResults];
-//    } else {
-//    NSDictionary *errorInfo = @{@"errorDescription": @"Unkown error"};
-//
-//    error = [[NSError alloc] initWithDomain:@"movie" code:0 userInfo:errorInfo];
-//    }
-//
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//    completion(error, movieList);
-//    });
-//    };
-//
-//    return [[[WebServiceClient alloc] init] retrieveListOfMoviesForPage:page andCompletionHandler:handler];
-//    }
 }

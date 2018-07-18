@@ -30,6 +30,8 @@
 		BF9A2FEE20FEE1E000784B73 /* WebServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A2FED20FEE1E000784B73 /* WebServiceResponse.swift */; };
 		BF9A2FEF20FEE1E000784B73 /* WebServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A2FED20FEE1E000784B73 /* WebServiceResponse.swift */; };
 		BF9A2FF220FF06FF00784B73 /* Date+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A2FF120FF06FF00784B73 /* Date+Helper.swift */; };
+		BFDA8D6720FFA3DD00CB14DF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA8D6620FFA3DD00CB14DF /* SearchViewController.swift */; };
+		BFDA8D6A20FFA55A00CB14DF /* MovieTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA8D6920FFA55A00CB14DF /* MovieTableViewDelegate.swift */; };
 		F16672C71BFB6714F873B337 /* Pods_Movie_Api_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17667488515935396136B333 /* Pods_Movie_Api_Client.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +72,8 @@
 		BF9A2FE920FEE1A500784B73 /* MovieApiClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiClientProtocol.swift; sourceTree = "<group>"; };
 		BF9A2FED20FEE1E000784B73 /* WebServiceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceResponse.swift; sourceTree = "<group>"; };
 		BF9A2FF120FF06FF00784B73 /* Date+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helper.swift"; sourceTree = "<group>"; };
+		BFDA8D6620FFA3DD00CB14DF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		BFDA8D6920FFA55A00CB14DF /* MovieTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 			children = (
 				BF9A2FD620FED52F00784B73 /* DataAccess */,
 				BF9A2FF020FF06E800784B73 /* Extensions */,
+				BFDA8D6820FFA53400CB14DF /* Delegates */,
 				BF9A2FD020FED41400784B73 /* View */,
 				BF9A2FCF20FED3F400784B73 /* Controllers */,
 				BF9A2FAF20FED0B400784B73 /* AppDelegate.swift */,
@@ -153,6 +158,7 @@
 			children = (
 				BF9A2FB120FED0B400784B73 /* ViewController.swift */,
 				BF9A2FDB20FEDF1600784B73 /* MovieDetailsViewController.swift */,
+				BFDA8D6620FFA3DD00CB14DF /* SearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -225,6 +231,14 @@
 				BF9A2FF120FF06FF00784B73 /* Date+Helper.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BFDA8D6820FFA53400CB14DF /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				BFDA8D6920FFA55A00CB14DF /* MovieTableViewDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		EA183E71C7429D5681C3B0BF /* Frameworks */ = {
@@ -452,11 +466,13 @@
 				BF9A2FE420FEE17100784B73 /* MovieResponsehandler.swift in Sources */,
 				BF9A2FB020FED0B400784B73 /* AppDelegate.swift in Sources */,
 				BF9A2FEA20FEE1A500784B73 /* MovieApiClientProtocol.swift in Sources */,
+				BFDA8D6720FFA3DD00CB14DF /* SearchViewController.swift in Sources */,
 				BF9A2FD920FED58300784B73 /* Movie.swift in Sources */,
 				BF9A2FF220FF06FF00784B73 /* Date+Helper.swift in Sources */,
 				BF9A2FD420FED44E00784B73 /* MovieTableViewCell.swift in Sources */,
 				BF9A2FE120FEE15A00784B73 /* DataAccessFacade.swift in Sources */,
 				BF9A2FE720FEE18F00784B73 /* WebServiceClient.swift in Sources */,
+				BFDA8D6A20FFA55A00CB14DF /* MovieTableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
