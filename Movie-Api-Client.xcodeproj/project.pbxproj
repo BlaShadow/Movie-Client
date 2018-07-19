@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		61F066660F4227332AAFEFB0 /* Pods_Movie_Api_ClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0231459CECEE7C0F37CE88E9 /* Pods_Movie_Api_ClientTests.framework */; };
 		BF0B6EF1210035F900B3AB34 /* CacheComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B6EF0210035F900B3AB34 /* CacheComponent.swift */; };
+		BF0B6EF221006CFB00B3AB34 /* CacheComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B6EF0210035F900B3AB34 /* CacheComponent.swift */; };
+		BF0B6EF321006D1600B3AB34 /* Date+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A2FF120FF06FF00784B73 /* Date+Helper.swift */; };
 		BF9A2FB020FED0B400784B73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A2FAF20FED0B400784B73 /* AppDelegate.swift */; };
 		BF9A2FB220FED0B400784B73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A2FB120FED0B400784B73 /* ViewController.swift */; };
 		BF9A2FB520FED0B400784B73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF9A2FB320FED0B400784B73 /* Main.storyboard */; };
@@ -497,7 +499,9 @@
 				BF9A2FEF20FEE1E000784B73 /* WebServiceResponse.swift in Sources */,
 				BF9A2FE820FEE18F00784B73 /* WebServiceClient.swift in Sources */,
 				BF9A2FE520FEE17100784B73 /* MovieResponsehandler.swift in Sources */,
+				BF0B6EF321006D1600B3AB34 /* Date+Helper.swift in Sources */,
 				BF9A2FEB20FEE1A500784B73 /* MovieApiClientProtocol.swift in Sources */,
+				BF0B6EF221006CFB00B3AB34 /* CacheComponent.swift in Sources */,
 				BF9A2FE220FEE15A00784B73 /* DataAccessFacade.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -654,10 +658,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C6QZ6SJB3K;
 				INFOPLIST_FILE = "Movie-Api-Client/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.shadow.Movie-Api-Client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -673,10 +674,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C6QZ6SJB3K;
 				INFOPLIST_FILE = "Movie-Api-Client/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.shadow.Movie-Api-Client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -693,11 +691,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C6QZ6SJB3K;
 				INFOPLIST_FILE = "Movie-Api-ClientTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.shadow.Movie-Api-ClientTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -715,11 +709,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C6QZ6SJB3K;
 				INFOPLIST_FILE = "Movie-Api-ClientTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.shadow.Movie-Api-ClientTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
