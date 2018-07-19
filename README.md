@@ -28,7 +28,7 @@ Project
 This app is using pod for managing packages, so:
 
 ```sh
-pod instal
+pod install
 ```
 
 You need to setup this project with your own **Movie DB Api Key**
