@@ -1,10 +1,14 @@
 # Movie-Client
 
-A basic integration from an ios app with *The Movie Database* (TMDb) [TMDb](https://www.themoviedb.org/documentation/api) api, this project has implemented 3 fearure:
+A basic integration from an ios app with *The Movie Database* (TMDb) [TMDb](https://www.themoviedb.org/documentation/api) API, this project has implemented 3 fearure:
 
 - List of movies from discover section
 - Show movie details
 - Make a search for any movie using a text criteria
+
+## Tech
+- Xcode 9.4.1
+- Swift 4.1
 
 # Architecture
 
@@ -37,6 +41,8 @@ You need to setup this project with your own **Movie DB Api Key**
 
 # Screenshot app
 
-![Screenshot1](https://github.com/BlaShadow/Movie-Client/blob/development/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202018-07-19%20at%2002.37.28.png)
-![Screenshot2](https://github.com/BlaShadow/Movie-Client/blob/development/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202018-07-19%20at%2002.37.31.png)
-![Screenshot3](https://github.com/BlaShadow/Movie-Client/blob/development/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202018-07-19%20at%2002.37.42.png)
+<img src="https://github.com/BlaShadow/Movie-Client/blob/development/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202018-07-19%20at%2002.37.28.png" data-canonical-src="https://github.com/BlaShadow/Movie-Client/blob/development/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202018-07-19%20at%2002.37.28.png" width="200" height="400" />
+
+<img src="https://github.com/BlaShadow/Movie-Client/blob/development/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202018-07-19%20at%2002.37.31.png" data-canonical-src="https://github.com/BlaShadow/Movie-Client/blob/development/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202018-07-19%20at%2002.37.31.png" width="200" height="400" />
+
+<img src="https://github.com/BlaShadow/Movie-Client/blob/development/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202018-07-19%20at%2002.37.42.png" data-canonical-src="https://github.com/BlaShadow/Movie-Client/blob/development/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202018-07-19%20at%2002.37.42.png" width="200" height="400" />
