@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		61F066660F4227332AAFEFB0 /* Pods_Movie_Api_ClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0231459CECEE7C0F37CE88E9 /* Pods_Movie_Api_ClientTests.framework */; };
+		BF0B6EF1210035F900B3AB34 /* CacheComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B6EF0210035F900B3AB34 /* CacheComponent.swift */; };
 		BF9A2FB020FED0B400784B73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A2FAF20FED0B400784B73 /* AppDelegate.swift */; };
 		BF9A2FB220FED0B400784B73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9A2FB120FED0B400784B73 /* ViewController.swift */; };
 		BF9A2FB520FED0B400784B73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF9A2FB320FED0B400784B73 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		162D433D9A09B4FE4A2AB268 /* Pods-Movie-Api-ClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie-Api-ClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Movie-Api-ClientTests/Pods-Movie-Api-ClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		17667488515935396136B333 /* Pods_Movie_Api_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movie_Api_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		536B91A576B05E5573D77804 /* Pods-Movie-Api-Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie-Api-Client.release.xcconfig"; path = "Pods/Target Support Files/Pods-Movie-Api-Client/Pods-Movie-Api-Client.release.xcconfig"; sourceTree = "<group>"; };
+		BF0B6EF0210035F900B3AB34 /* CacheComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheComponent.swift; sourceTree = "<group>"; };
 		BF9A2FAC20FED0B400784B73 /* Movie-Api-Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie-Api-Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF9A2FAF20FED0B400784B73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF9A2FB120FED0B400784B73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 				0FD8BDF29F274F77465C1819 /* Pods-Movie-Api-ClientTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BF0B6EEF210035E400B3AB34 /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				BF0B6EF0210035F900B3AB34 /* CacheComponent.swift */,
+			);
+			path = LocalStorage;
 			sourceTree = "<group>";
 		};
 		BF9A2FA320FED0B400784B73 = {
@@ -183,6 +193,7 @@
 		BF9A2FD620FED52F00784B73 /* DataAccess */ = {
 			isa = PBXGroup;
 			children = (
+				BF0B6EEF210035E400B3AB34 /* LocalStorage */,
 				BF9A2FDF20FEE13300784B73 /* Remote */,
 				BF9A2FDE20FEE12B00784B73 /* Handlers */,
 				BF9A2FD720FED53B00784B73 /* Domain */,
@@ -460,6 +471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF0B6EF1210035F900B3AB34 /* CacheComponent.swift in Sources */,
 				BF9A2FDC20FEDF1600784B73 /* MovieDetailsViewController.swift in Sources */,
 				BF9A2FEE20FEE1E000784B73 /* WebServiceResponse.swift in Sources */,
 				BF9A2FB220FED0B400784B73 /* ViewController.swift in Sources */,

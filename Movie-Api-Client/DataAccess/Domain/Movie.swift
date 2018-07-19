@@ -17,8 +17,9 @@ class Movie: NSObject {
     let movieScore: NSNumber
     let backdropImagePath: String
     let posterImagePath: String
+    let genres: String
     
-    init(identifier: Int64, title: String, overview: String, releaseDate: Date, movieScore: NSNumber, backdropImage: String, posterImage: String) {
+    init(identifier: Int64, title: String, overview: String, releaseDate: Date, movieScore: NSNumber, backdropImage: String, posterImage: String, genres: String) {
         self.identifier = identifier
         self.title = title
         self.overview = overview
@@ -26,6 +27,7 @@ class Movie: NSObject {
         self.movieScore = movieScore
         self.backdropImagePath = backdropImage
         self.posterImagePath = posterImage
+        self.genres = genres
     }
     
     var backDropImageUrl : String {

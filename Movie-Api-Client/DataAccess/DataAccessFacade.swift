@@ -17,7 +17,11 @@ class DataAccessFacade: NSObject {
         return sharedDataAccessFacade
     }
     
-    func listOfMovies(ForPage page:NSInteger, withCompletion completion: @escaping (NSError?, [Movie]?) -> Void) -> URLSessionTask {
+    func listOfMovies(ForPage page: NSInteger, withCompletion completion: @escaping (NSError?, [Movie]?) -> Void) -> URLSessionTask {
         return MovieResponsehandler.shared().retrieveListOfMovies(ForPage:page, withCompletion:completion)
+    }
+    
+    func searchMovieWithText(textCriteria: String, page: NSInteger, withCompletion completion: @escaping (NSError?, [Movie]?) -> Void) -> URLSessionTask {
+        return MovieResponsehandler.shared().searchMovieWith(text:textCriteria, page:page, withCompletion:completion)
     }
 }

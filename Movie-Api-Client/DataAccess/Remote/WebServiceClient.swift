@@ -38,23 +38,46 @@ class WebServiceClient: NSObject, MovieApiClientProtocol {
         
         return task
     }
+}
+
+// MARK: -
+// MARK: Movie Client Protocol
+extension WebServiceClient {
     
-    // MARK: -
-    // MARK: Movie Client Protocol
-    
-    func retrieveListOfMoviesForPage(page :NSInteger, withCompletion completion: @escaping (WebServiceResponse) -> Void) -> URLSessionTask {
+    func retrieveListOfMoviesForPage(page: NSInteger, withCompletion completion: @escaping (WebServiceResponse) -> Void) -> URLSessionTask {
         let url = self.url(withPath: "discover/movie", params: ["page": String(page)])
         
         //Perform request
         return self.executeRequest(with: self.mutableGetRequest(withUrl: url), and: completion)
     }
     
+    func searchMoviesWithTextCriteria(criteria: String, page: NSInteger, withCompletion completion: @escaping (WebServiceResponse) -> Void) -> URLSessionTask {
+        let url = self.url(withPath: "search/movie", params: ["query": criteria, "page": String(page)])
+        
+        //Perform request
+        return self.executeRequest(with: self.mutableGetRequest(withUrl: url), and: completion)
+    }
     
-    // MARK: -
-    // MARK: Misc
+    func retrieveAllGenres(withCompletion completion: @escaping (WebServiceResponse) -> Void) -> URLSessionTask {
+        let url = self.url(withPath: "genre/movie/list", params: [:])
+        
+        //Perform request
+        return self.executeRequest(with: self.mutableGetRequest(withUrl: url), and: completion)
+    }
+}
+
+// MARK: -
+// MARK: Misc
+extension WebServiceClient {
+    
+    func getEnvironmentVar(_ name: String) -> String {
+        guard let rawValue = getenv(name) else { return "" }
+        
+        return String(utf8String: rawValue)!
+    }
     
     func url(withPath path:String, params:[String: String]) -> URLComponents {
-        let apiKey = "1f54bd990f1cdfb230adb312546d765d"
+        let apiKey = self.getEnvironmentVar("API_KEY")
         var defaultParams: [String: String] = ["language": "en-US", "api_key": apiKey]
         
         //Merge params

@@ -14,6 +14,13 @@ protocol MovieTableViewDelegateResponder {
     ///
     /// - Parameter movie: selected movie
     func didSelectMovie(with movie:Movie)
+    
+    
+    /// Call this method when the user has come to the end of the table view
+    /// and need to load more data
+    ///
+    /// - Parameter page: requested page
+    func fetchMoreDataWith(page requestedPage:NSInteger)
 }
 
 class MovieTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
@@ -26,6 +33,10 @@ class MovieTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSour
     private var moviesTableview: UITableView?
     private var responder: MovieTableViewDelegateResponder?
     
+    var isFetchingData: Bool = false
+    private var currentPage: NSInteger = 1
+    private var shouldLoadMoreMovie: Bool = true
+    
     init(with tableView: UITableView, andResponder responder: MovieTableViewDelegateResponder) {
         super.init()
         
@@ -36,8 +47,20 @@ class MovieTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSour
     }
     
     func updateTableView(with data: [Movie]){
-        self.movieList = data
+        //Update page
+        self.currentPage += 1
         
+        //Movie list
+        if self.movieList != nil && (self.movieList?.count)! > 0{
+            self.movieList?.append(contentsOf: data)
+        } else {
+            self.movieList = data
+            
+            //if the data is less than 20 items, it's means there's no more movie
+            self.shouldLoadMoreMovie = data.count == 20
+        }
+        
+        //Reload data
         self.moviesTableview?.reloadData()
     }
     
@@ -50,6 +73,16 @@ class MovieTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSour
         
         //Register custom cell
         self.moviesTableview?.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: kMovieCellIdentifier)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let extraContentcontentOffset:CGFloat = 100
+        let currentPosition = scrollView.contentOffset.y + extraContentcontentOffset
+        let contentHeight = scrollView.contentSize.height - (self.moviesTableview?.frame.size.height)!
+        
+        if currentPosition >= contentHeight && self.isFetchingData == false {
+            self.responder?.fetchMoreDataWith(page: self.currentPage)
+        }
     }
     
     // MARK: -

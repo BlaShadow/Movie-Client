@@ -37,7 +37,15 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.fetchTask = DataAccessFacade.shared().listOfMovies(ForPage: 1) { (error, items) in
+        self.loadDataFor(page: 1)
+    }
+    
+    func loadDataFor(page requestedPage: NSInteger){
+        self.movieDelegate?.isFetchingData = true
+        
+        self.fetchTask = DataAccessFacade.shared().listOfMovies(ForPage: requestedPage) { (error, items) in
+            self.movieDelegate?.isFetchingData = false
+            
             if error != nil {
                 
             } else {
@@ -66,5 +74,9 @@ class ViewController: UIViewController {
 extension ViewController : MovieTableViewDelegateResponder {
     func didSelectMovie(with movie: Movie) {
         self.performSegue(withIdentifier: kMovieDetailsSegue, sender: movie)
+    }
+    
+    func fetchMoreDataWith(page: NSInteger) {
+        self.loadDataFor(page: page)
     }
 }

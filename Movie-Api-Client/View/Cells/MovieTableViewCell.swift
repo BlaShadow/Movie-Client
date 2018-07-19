@@ -18,6 +18,7 @@ class MovieTableViewCell: UITableViewCell {
     
     @IBOutlet fileprivate weak var contentContainer: UIView!
     @IBOutlet fileprivate weak var backgroundContent: UIView!
+    @IBOutlet fileprivate weak var movieGenresLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +32,7 @@ class MovieTableViewCell: UITableViewCell {
         self.movieTitleLabel.text = movie.title
         self.movieReleaseDateLabel.text = movie.releaseDate.formatDateAsString()
         self.movieScoreLabel.text = String(format: "%.1f", movie.movieScore.doubleValue)
+        self.movieGenresLabel.text = movie.genres
         
         //Setup poster image
         self.moviePosterImageView.sd_setImage(with: URL(string: movie.posterImageUrl), completed: nil)
@@ -46,6 +48,8 @@ class MovieTableViewCell: UITableViewCell {
         self.backgroundContent.layer.shadowOffset = CGSize(width: 0.7, height: 2.0)
         self.backgroundContent.layer.shadowOpacity = 0.7
         self.backgroundContent.layer.shadowRadius = 4.0
+        self.backgroundContent.layer.cornerRadius = 10.0
+        self.backgroundContent.clipsToBounds = false
         
         //A little round for corners & shadow content
         self.contentContainer.layer.cornerRadius = 10.0
